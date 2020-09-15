@@ -22,8 +22,7 @@ int
 main(int argc, char **argv)
 {
     int c;
-    char *uname = NULL;
-
+    char **p = NULL;
     while (1) {
         int option_index = 0;
         static struct option long_options[] = {
@@ -45,13 +44,17 @@ main(int argc, char **argv)
     }
 
     if (optind < argc) {
-        uname = argv[optind];
+        p = &argv[optind];
     }
 
-    if (uname == NULL) {
-        printf ("Hello world.\n");
+    if (p == NULL || *p == NULL) {
     } else {
-        printf ("Hi, %s.\n", uname);
+        printf ("Hello world.\n");
+        // printf ("Hi,");
+        do {
+            printf (" %s", *p);
+        } while (*(++p));
+        printf (".\n");
     }
 
     printf( "(version: %s)\n", _VERSION );
